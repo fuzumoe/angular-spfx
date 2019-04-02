@@ -1,28 +1,18 @@
+import * as angular from 'angular';
+import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
+import HomeController from './HomeController';
+import TestDataService from './TestData.service';
+import ProdDataService from './ProdData.service';
 
-import { Injector, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { createCustomElement } from '@angular/elements';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+const eventsapp: angular.IModule = angular.module('eventsapp', []);
 
-import { AppComponent } from './components/app.component';
-
-import { DataService } from './services/data.services';
-
-@NgModule({
-  imports: [BrowserModule, HttpClientModule, FormsModule],
-  declarations: [AppComponent],
-  providers: [DataService],
-  bootstrap: [AppComponent]
-})
-export class AppModule {
-  constructor(private injector: Injector) { }
-  public ngDoBootstrap() {
-    if (!customElements.get('spfx-app')) {
-      const appElement = createCustomElement(AppComponent, { injector: this.injector });
-      customElements.define('spfx-app', appElement);
-    }
-  }
+if (Environment.type === EnvironmentType.Local) {
+  eventsapp
+    .controller('HomeController', HomeController)
+    .service('DataService', TestDataService);
 }
-
-
+else {
+  eventsapp
+    .controller('HomeController', HomeController)
+    .service('DataService', ProdDataService);
+}

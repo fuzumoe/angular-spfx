@@ -1,12 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "events-client-side-solution",
-    "id": "d7deb9e4-429e-4ccc-9e08-79161aaea6c3",
+    "id": "7d98d233-575c-462d-895c-db3d1e3e4f5e",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": true,
-    "isDomainIsolated": true
+    "skipFeatureDeployment": true
   },
   "paths": {
     "zippedPackage": "solution/events.sppkg"
